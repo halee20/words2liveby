@@ -13,7 +13,7 @@
       <small><%= time_ago_in_words word.created_at %> ago</small>
     </div>
     <div class="panel-body">
-    <p><%= word.author %></p>
+      <p><%= word.author %></p>
       <center><a href = "/words/<%= word.id %>"><%= word.word %></a></center>
       <p>
         <% if  word.fans.exists?(current_user.id) %>
@@ -53,13 +53,31 @@
         </form>
         <% end %>
       </p>
+
       <% word.comments.each do |comment| %>
-      <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
-      <p><%= comment.body %></p>
-      <% end %>
+      <li class="media-body">
+        <div class="media-body"></div></li>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a> <%= comment.body %></p>
+        <% end %>
+        <div class="media-body">
+
+
+
+          <form action="/create_comment" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <!-- Label and input for user_id -->
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+            <!-- Label and input for word_id -->
+            <input type="hidden" name="word_id" value="<%= word.id %>">
+            <!-- Label and input for body -->
+            <!-- <div class = "form-group"> -->
+              <label for = "body" class = "sr-only">Body</label>
+              <input type="text" id = "body" name "body" placeholder = "Add a comment..." class="form-control" required>
+            <!-- </div> -->
+          </form>
+        </div>
+      </div>
     </div>
-    <div class = "form-group"><label for = "body" class = "sr-only">Body</label><input type="text" id = "body" name "body" placeholder = "Add a comment..." class="form-control" required></div></form>
   </div>
-</div>
-</div>
-<% end %>
+  <% end %>
