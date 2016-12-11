@@ -1,0 +1,136 @@
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (2.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to DeviseCreateUsers (20161211092912)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "username" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161211092912"]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["username", "alice"], ["email", "alice@example.com"], ["encrypted_password", "$2a$11$KWwam1IFvFhvefVCIo1ib.KVugKlCREhbIcJy9odzTWY5hmfn85g2"], ["created_at", "2016-12-11 09:31:07.318040"], ["updated_at", "2016-12-11 09:31:07.318040"]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1[0m
+  [1m[35mSQL (3.4ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["username", "bob"], ["email", "bob@example.com"], ["encrypted_password", "$2a$11$oKwehLl5Vo3dOXVr4ZzlROA1XAQjF7yR8E1Ou4AppAcRbqDhuuKcq"], ["created_at", "2016-12-11 09:31:07.479834"], ["updated_at", "2016-12-11 09:31:07.479834"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'carol@example.com' LIMIT 1[0m
+  [1m[35mSQL (3.4ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["username", "carol"], ["email", "carol@example.com"], ["encrypted_password", "$2a$11$zWE5yIfsmbA7FK.hVWjLa.9WSYYT1nFsbsAHcLk61LhVt5O0aAF7a"], ["created_at", "2016-12-11 09:31:07.644276"], ["updated_at", "2016-12-11 09:31:07.644276"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateWords (20161211093247)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at C:/Sites/words2liveby/db/migrate/20161211093247_create_words.rb:8)
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "words" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "word" text, "author" varchar, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161211093247"]]
+  [1m[36m (4.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLikes (20161211093342)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at C:/Sites/words2liveby/db/migrate/20161211093342_create_likes.rb:7)
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "word_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161211093342"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20161211093441)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at C:/Sites/words2liveby/db/migrate/20161211093441_create_comments.rb:8)
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "word_id" integer, "body" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161211093441"]]
+  [1m[36m (4.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for ::1 at 2016-12-11 18:40:52 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WordsController#index as HTML
+  [1m[35mWord Load (1.0ms)[0m  SELECT "words".* FROM "words"
+  Rendered words/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 774ms (Views: 751.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-11 18:40:53 +0900
+Processing by WordsController#index as HTML
+  [1m[36mWord Load (0.5ms)[0m  [1mSELECT "words".* FROM "words"[0m
+  Rendered words/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 174ms (Views: 172.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-11 18:41:49 +0900
+Processing by WordsController#index as HTML
+  [1m[35mWord Load (1.0ms)[0m  SELECT "words".* FROM "words"
+  Rendered words/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 391ms (Views: 389.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-12-11 18:41:52 +0900
+Processing by WordsController#index as HTML
+  [1m[36mWord Load (0.0ms)[0m  [1mSELECT "words".* FROM "words"[0m
+  Rendered words/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 166ms (Views: 165.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-12-11 18:41:54 +0900
+Processing by WordsController#index as HTML
+  [1m[35mWord Load (0.0ms)[0m  SELECT "words".* FROM "words"
+  Rendered words/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 164ms (Views: 163.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-12-11 18:42:03 +0900
+Processing by WordsController#index as HTML
+  [1m[36mWord Load (1.0ms)[0m  [1mSELECT "words".* FROM "words"[0m
+  Rendered words/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 149ms (Views: 148.3ms | ActiveRecord: 1.0ms)
