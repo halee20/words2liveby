@@ -1,0 +1,25 @@
+<div class="page-header">
+  <center>
+    <h3><%= @user.username %>'s words</h3>
+    <p><a href="/words/new" class="btn btn-lg btn-success"><i class = "fa fa-plus"> </i></a></p>
+  </center>
+</div>
+
+<% @user.words.each do |word| %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><a href = "/users/<%= word.user_id %>"><%= word.user.username %></a></div>
+      <div class="panel-body">
+          <p><%= word.author %></p>
+        <center><a href = "/words/<%= word.id %>"><%= word.word %></a></center>
+
+        <% word.comments.each do |comment| %>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
+        <p><%= comment.body %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

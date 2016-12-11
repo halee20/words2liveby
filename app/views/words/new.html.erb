@@ -1,55 +1,106 @@
 <!-- Validation failure messages -->
-<% if @word.errors.any? %>
-  <% @word.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<!-- <% if @word.errors.any? %>
+<% @word.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
-  <h3>Add Word</h3>
+<h3>Add Word</h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <form action="/create_word" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+<div class="col-md-12">
+<form action="/create_word" method="post"> -->
+<!-- Hidden input for authenticity token to protect from forgery -->
+<!-- <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"> -->
 
-      <!-- Label and input for word -->
-      <div class="form-group">
-        <label for="word" class="control-label">
-          Word
-        </label>
+<!-- Label and input for word -->
+<!-- <div class="form-group">
+<label for="word" class="control-label">
+Word
+</label>
 
-        <textarea id="word" name="word" placeholder="Word" class="form-control" rows="3"><%= @word.word %></textarea>
-      </div>
+<textarea id="word" name="word" placeholder="Word" class="form-control" rows="3"><%= @word.word %></textarea>
+</div> -->
 
-      <!-- Label and input for author -->
-      <div class="form-group">
-        <label for="author" class="control-label">
-          Author
-        </label>
+<!-- Label and input for author -->
+<!-- <div class="form-group">
+<label for="author" class="control-label">
+Author
+</label>
 
-        <input type="text" id="author" name="author" placeholder="Author" class="form-control" value="<%= @word.author %>">
-      </div>
+<input type="text" id="author" name="author" placeholder="Author" class="form-control" value="<%= @word.author %>">
+</div> -->
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+<!-- Label and input for user_id -->
+<!-- <div class="form-group">
+<label for="user_id" class="control-label">
+User
+</label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @word.user_id %>">
-      </div>
-
-      <button class="btn btn-success">
-        Create Word
-      </button>
-      or
-      <a href="/words">Cancel</a>
-    </form>
-  </div>
+<input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @word.user_id %>">
 </div>
+
+<button class="btn btn-success">
+Create Word
+</button>
+or
+<a href="/words">Cancel</a>
+</form>
+</div>
+</div> -->
+
+<!-- Validation failure messages -->
+<% if @word.errors.any? %>
+<% @word.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><p>Add word</p></div>
+
+      <form action="/create_word" method="post">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <div class="panel-body">
+          <!-- Label and input for caption -->
+          <div class="form-group">
+            <label for="author" class="control-label">
+              Author
+            </label>
+
+            <textarea id="Author" name="Author" placeholder="Author" class="form-control" rows="3"><%= @word.author %></textarea>
+          </div>
+
+          <!-- Label and input for image -->
+          <div class="form-group">
+            <label for="image" class="control-label">
+              Word
+            </label>
+
+            <!-- <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @word.word %>"> -->
+            <textarea id="word" name="word" placeholder="Word" class="form-control" rows="3"><%= @word.word %></textarea>
+          </div>
+
+          <!-- Label and input for user_id -->
+          <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+          <button class="btn btn-success">
+            Create word
+          </button>
+          or
+          <a href="/words">Cancel</a>
+        </form>
+      </div>
+    </div>
