@@ -1,5 +1,5 @@
 <div class="page-header">
-  <center><h3><%= current_user.username %>'s Likes</h3></center>
+  <center><h3><%= current_user.username %>'s likes</h3></center>
 </div>
 
 <% @likes.each do |like| %>
@@ -13,8 +13,8 @@
         <center><a href = "/words/<%= like.word.id %>"><%= like.word.word %></a></center>
 
         <% like.word.comments.each do |comment| %>
-        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a></p>
-        <p><%= comment.body %></p>
+        <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a> <%= comment.body %></p>
+
         <% end %>
       </div>
     </div>

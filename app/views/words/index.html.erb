@@ -29,7 +29,7 @@
 
           <button class="btn btn-link">
             <i class="fa fa-heart" aria-hidden="true"></i>
-          </button> <small> <%= word.fans.pluck(:username).to_sentence %> likes this</small>
+          </button> <small> <%= word.fans.pluck(:username).to_sentence %> like this</small>
         </form>
 
         <% else %>
@@ -48,7 +48,7 @@
           <% if word.fans.empty? %>
           <small> be the first to like this</small>
           <% else %>
-          <h5><%= word.fans.pluck(:username).to_sentence %> likes this</h5>
+          <small><%= word.fans.pluck(:username).to_sentence %> likes this</small>
           <% end %>
         </form>
         <% end %>
@@ -60,22 +60,7 @@
         <p><a href = "/users/<%= comment.user_id %>"><%= comment.user.username %></a> <%= comment.body %></p>
         <% end %>
         <div class="media-body">
-
-
-
-          <form action="/create_comment" method="post">
-            <!-- Hidden input for authenticity token to protect from forgery -->
-            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-            <!-- Label and input for user_id -->
-            <input type="hidden" name="user_id" value="<%= current_user.id %>">
-            <!-- Label and input for word_id -->
-            <input type="hidden" name="word_id" value="<%= word.id %>">
-            <!-- Label and input for body -->
-            <!-- <div class = "form-group"> -->
-              <label for = "body" class = "sr-only">Body</label>
-              <input type="text" id = "body" name "body" placeholder = "Add a comment..." class="form-control" required>
-            <!-- </div> -->
-          </form>
+        
         </div>
       </div>
     </div>

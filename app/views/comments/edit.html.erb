@@ -1,55 +1,103 @@
 <!-- Validation failure messages -->
 <% if @comment.errors.any? %>
-  <% @comment.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @comment.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
-<div class="page-header">
-  <h3>Edit Comment #<%= @comment.id %></h3>
-</div>
+
 
 <div class="row">
-  <div class="col-md-12">
-    <form action="/update_comment/<%= @comment.id %>" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><p>Edit comment #<%= @comment.id %></p></div>
 
-      <!-- Label and input for word_id -->
-      <div class="form-group">
-        <label for="word_id" class="control-label">
-          Word
-        </label>
+      <div class="panel body">
+        <div class="form-group">
+          <label for="word_id" class="control-label">
+            Word
+          </label>
 
-        <input type="text" id="word_id" name="word_id" placeholder="Word" class="form-control" value="<%= @comment.word_id %>">
+          <%= select_tag(:word_id, options_from_collection_for_select(Word.all, :id, :word), :class => "form-control") %>
+        </div>
+
+        <div class="panel body">
+          <div class="form-group">
+            <label for="body" class="control-label">
+              Body
+            </label>
+
+            <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @comment.body %></textarea>
+          </div>
+
+          <!-- Label and input for user_id -->
+          <div class="panel body">
+            <div class="form-group">
+              <label for="user_id" class="control-label">
+                User
+              </label>
+              <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
+              <!-- <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comment.user_id %>"> -->
+            </div>
+
+            <button class="btn btn-warning">
+              Update Comment
+            </button>
+            or
+            <a href="/comments/<%= @comment.id %>">Cancel</a>
+          </form>
+        </div>
       </div>
 
-      <!-- Label and input for body -->
-      <div class="form-group">
-        <label for="body" class="control-label">
-          Body
-        </label>
 
-        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @comment.body %></textarea>
-      </div>
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comment.user_id %>">
-      </div>
 
-      <button class="btn btn-warning">
-        Update Comment
-      </button>
-      or
-      <a href="/comments/<%= @comment.id %>">Cancel</a>
-    </form>
-  </div>
+
+      <!-- <div class="page-header">
+      <h3>Edit Comment #<%= @comment.id %></h3>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12">
+    <form action="/update_comment/<%= @comment.id %>" method="post"> -->
+    <!-- Hidden input for authenticity token to protect from forgery -->
+    <!-- <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"> -->
+    <!-- Label and input for word_id -->
+    <!-- <div class="form-group">
+    <label for="word_id" class="control-label">
+    Word
+  </label>
+
+  <%= select_tag(:word_id, options_from_collection_for_select(Word.all, :id, :word), :class => "form-control") %>
+</div> -->
+
+<!-- Label and input for body -->
+<!-- <div class="form-group">
+<label for="body" class="control-label">
+Body
+</label>
+
+<textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @comment.body %></textarea>
+</div> -->
+
+<!-- Label and input for user_id -->
+<!-- <div class="form-group">
+<label for="user_id" class="control-label">
+User
+</label>
+<%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %> -->
+<!-- <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @comment.user_id %>"> -->
+<!-- </div>
+
+<button class="btn btn-warning">
+Update Comment
+</button>
+or
+<a href="/comments/<%= @comment.id %>">Cancel</a>
+</form>
 </div>
+</div> -->

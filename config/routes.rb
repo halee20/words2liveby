@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  devise_for :users
   root "words#index"
 
   # Routes for the User resource:
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Routes for the My Likes resource:
   # READ
   get "/my_likes", :controller => "users", :action => "likes"
-  
+
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
@@ -62,7 +62,6 @@ Rails.application.routes.draw do
   get "/delete_word/:id", :controller => "words", :action => "destroy"
   #------------------------------
 
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
